@@ -1201,6 +1201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Quad
       objectReference: {fileID: 0}
+    - target: {fileID: 2889542707330015840, guid: 058abf6965605f94887673b24208dd49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3104604199970985438, guid: 058abf6965605f94887673b24208dd49, type: 3}
       propertyPath: m_LocalPosition.x
       value: 139.2
