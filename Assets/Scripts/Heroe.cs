@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Heroe : MonoBehaviour
 {
@@ -7,47 +8,41 @@ public class Heroe : MonoBehaviour
 
     [SerializeField] private Enemy enemyRef;
     private Ability abilityRef;
-    private bool habilidadFueRobada = false;
 
-    private void Update()
+    public void RobarHability(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (context.performed)
         {
-            Debug.Log("Presionaste R");
             RobarHabilidad(enemyRef);
-            habilidadFueRobada = true;
         }
-
-        if (Input.GetKeyDown(KeyCode.U))
+    }
+    public void Userhability(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
-            Debug.Log("Presionaste U");
-
-            if (habilidadFueRobada)
-            {
-                habilidadFueRobada = false;
-                Debug.Log("Esperando un frame antes de usar la habilidad...");
-                return;
-            }
-
             UseAbility();
         }
     }
 
     public void RobarHabilidad(Enemy enemy)
     {
-        if (enemy == null)
-        {
-            Debug.LogWarning("Enemy es null. No se puede robar la habilidad.");
-            return;
-        }
-
         string nombre = enemy.GetHabilidad();
+        GameObject prefab = enemy.GetFirePrefab();
         Debug.Log("Habilidad robada correctamente: " + nombre);
 
-        abilityRef = new Ability(nombre, () =>
+        abilityRef = new Habilidad(nombre, () =>
         {
             Debug.Log("Usando habilidad robada: " + nombre);
-        });
+            if (prefab != null)
+            {
+                GameObject fuego = GameObject.Instantiate(
+                    prefab,
+                    transform.position + Vector3.up * 2f,
+                    Quaternion.identity
+                );
+                GameObject.Destroy(fuego, 3f);
+            }
+        }, prefab);
 
         onAbilityStolen?.Invoke(nombre);
     }
@@ -56,12 +51,8 @@ public class Heroe : MonoBehaviour
     {
         if (abilityRef != null)
         {
-            Debug.Log("Usando habilidad: " + abilityRef.name);
+            Debug.Log("Usando habilidad: " + abilityRef.Name);
             abilityRef.Use();
-        }
-        else
-        {
-            Debug.Log("No se ha robado ninguna habilidad aún.");
         }
     }
 }

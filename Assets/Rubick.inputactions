@@ -1,0 +1,54 @@
+{
+    "name": "Rubick",
+    "maps": [
+        {
+            "name": "Rubick",
+            "id": "c8ff56b0-b87b-4927-963f-626158a70f49",
+            "actions": [
+                {
+                    "name": "Robar",
+                    "type": "Button",
+                    "id": "96931535-d0fb-4275-a631-14b456d8fafe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Usar",
+                    "type": "Button",
+                    "id": "ade06d4b-bf3e-48f6-ac16-19b9788ecc19",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a7bbe172-4051-46ff-95b3-ad0aeb95e31b",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Robar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae215775-0614-40e6-bf6a-aeb70349b169",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Usar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
